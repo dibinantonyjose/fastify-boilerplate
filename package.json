@@ -1,0 +1,19 @@
+{
+  "name": "fastify-mongo-boilerplate",
+  "version": "1.0.0",
+  "description": "Nodejs fastify mongodb boilerplate for easy use",
+  "main": "src/app.js",
+  "repository": "https://github.com/dibinjose/fastify-mongo-boilerplate.git",
+  "author": "dibinjose <dibinantonyjose@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon .src/app.js | pino-colada"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.20.1",
+    "fastify-autoload": "^3.8.0",
+    "fastify-oas": "^3.0.8",
+    "pino-colada": "^2.1.0"
+  }
+}
