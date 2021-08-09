@@ -8,7 +8,8 @@ module.exports = fastifyPlugin(async () => {
       await mongoose.connect(url, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
+        useCreateIndex: true
       })
       console.log('Database is connected')
     } else {
