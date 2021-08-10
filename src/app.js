@@ -5,9 +5,13 @@ const Fastify = require('fastify')({ logger: true })
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
 const oas = require('fastify-oas')
+const jwt = require('fastify-jwt')
 
 // register fastify ecosystem plugins
 Fastify.register(oas)
+Fastify.register(jwt, {
+  secret: process.env.jwtSecret
+})
 
 // register custom plugins
 Fastify.register(AutoLoad, {

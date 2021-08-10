@@ -25,20 +25,33 @@ UserSchema.pre('save', async function (next) {
   next()
 })
 
-UserSchema.statics = {
-  load: async function (options) {
-    return this.findOne(options.criteria).select(options.select)
+UserSchema.methods = {
+  getUserByUserName: async userName => {
+    const userModel = mongoose.model('User'),
+      querry = { userName: userName },
+      options = {
+        criteria: querry,
+        select: 'userName'
+      }
+    return userModel.load(options)
   },
-  list: function (options) {
-    return this.find(options.criteria)
-      .select(options.select)
-      .sort({ createdAt: -1 })
-      .lean()
-      .exec()
+  userCreate: async data => {
+    try {
+      const userModel = mongoose.model('User')
+      return await userModel.create(data)
+    } catch (err) {
+      throw err
+    }
   },
   userLogin: async function (data) {
     try {
-      const user = await this.findOne({ userName: data.userName })
+      const userModel = mongoose.model('User'),
+        querry = { userName: data.userName },
+        options = {
+          criteria: querry,
+          select: 'userName password'
+        }
+      const user = await userModel.load(options)
       if (user) {
         const auth = await bcrypt.compare(data.password, user.password)
         if (auth) {
@@ -53,4 +66,16 @@ UserSchema.statics = {
   }
 }
 
+UserSchema.statics = {
+  load: function (options) {
+    return this.findOne(options.criteria).select(options.select)
+  },
+  list: function (options) {
+    return this.find(options.criteria)
+      .select(options.select)
+      .sort({ createdAt: -1 })
+      .lean()
+      .exec()
+  }
+}
 module.exports = mongoose.model('User', UserSchema)
