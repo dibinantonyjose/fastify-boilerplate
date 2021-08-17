@@ -19,7 +19,7 @@ Fastify.register(AutoLoad, {
 })
 
 Fastify.register(AutoLoad, {
-  dir: path.join(__dirname, 'routes'),
+  dir: path.join(__dirname, 'services'),
   options: Object.assign({ prefix: '/api' })
 })
 
