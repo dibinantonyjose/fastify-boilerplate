@@ -6,9 +6,10 @@ const path = require('path')
 const AutoLoad = require('fastify-autoload')
 const oas = require('fastify-oas')
 const jwt = require('fastify-jwt')
+const swagger = require('./utils/swagger')
 
 // register fastify ecosystem plugins
-Fastify.register(oas)
+Fastify.register(oas, swagger.options)
 Fastify.register(jwt, {
   secret: process.env.jwtSecret
 })
