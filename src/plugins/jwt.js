@@ -1,11 +1,11 @@
 const fastifyPlugin = require('fastify-plugin')
 
 module.exports = fastifyPlugin(async (fastify, opts) => {
-  fastify.decorate('authenticate', async function (req, res) {
+  fastify.decorate('authenticate', async function (request, reply) {
     try {
-      await req.jwtVerify()
+      await request.jwtVerify()
     } catch (err) {
-      res.send(err)
+      reply.send(err)
     }
   })
 })
