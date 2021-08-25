@@ -10,7 +10,7 @@ const swagger = require('./utils/swagger')
 const cors = require('fastify-cors')
 
 // register fastify ecosystem plugins
-fastify.register(cors, {
+Fastify.register(cors, {
   origin: true,
   allowedHeaders: ['Authorization', 'Content-Type'],
   credentials: true
