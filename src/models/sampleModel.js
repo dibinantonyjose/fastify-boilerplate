@@ -5,8 +5,7 @@ const mongoose = require('mongoose')
 const SampleSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   age: {
     type: String,

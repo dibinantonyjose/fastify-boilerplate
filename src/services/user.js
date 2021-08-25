@@ -10,7 +10,8 @@ module.exports = async (fastify, options) => {
     try {
       await request.jwtVerify()
     } catch (err) {
-      reply.send('Authentication failed')
+      console.log(err)
+      reply.error({ message: 'Authentication failed' })
     }
   }),
     fastify.get(
@@ -21,9 +22,13 @@ module.exports = async (fastify, options) => {
           const userModel = new User(),
             userId = request.user.userId,
             result = await userModel.getUserById(userId)
-          reply.send(result)
+          reply.success({ message: 'Success' }, result)
         } catch (err) {
-          reply.send(err)
+          console.log(err)
+          reply.error({
+            message: 'Internal Server Error',
+            statusCode: 500
+          })
         }
       }
     ),
@@ -36,9 +41,13 @@ module.exports = async (fastify, options) => {
             data = request.body,
             userId = request.user.userId,
             result = await sampleModel.addData(data, userId)
-          reply.send(result)
+          reply.success({ message: 'Added Successfully' }, result)
         } catch (err) {
-          reply.send(err)
+          console.log(err)
+          reply.error({
+            message: 'Internal Server Error',
+            statusCode: 500
+          })
         }
       }
     ),
@@ -51,12 +60,16 @@ module.exports = async (fastify, options) => {
             userId = request.user.userId,
             result = await sampleModel.listAllDataByUser(userId)
           if (result.length === 0) {
-            reply.send('no data')
+            reply.success({ message: 'No Data' })
           } else {
-            reply.send(result)
+            reply.success({ message: 'Success' }, result)
           }
         } catch (err) {
-          reply.send(err)
+          console.log(err)
+          reply.error({
+            message: 'Internal Server Error',
+            statusCode: 500
+          })
         }
       }
     )
