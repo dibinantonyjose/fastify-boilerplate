@@ -63,16 +63,29 @@ UserSchema.methods = {
     } catch (err) {
       throw err
     }
+  },
+  getUserById: async function (userId) {
+    const userModel = mongoose.model('User'),
+      querry = { _id: userId },
+      options = {
+        criteria: querry,
+        select: '_id userName name'
+      }
+    return userModel.load(options)
   }
 }
 
 UserSchema.statics = {
   load: function (options) {
-    return this.findOne(options.criteria).select(options.select)
+    const select = options.select || ' -__v'
+    const criteria = options.criteria || {}
+    return this.findOne(criteria).select(select)
   },
   list: function (options) {
-    return this.find(options.criteria)
-      .select(options.select)
+    const select = options.select || ' -__v'
+    const criteria = options.criteria || {}
+    return this.find(criteria)
+      .select(select)
       .sort({ createdAt: -1 })
       .lean()
       .exec()

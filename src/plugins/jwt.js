@@ -5,7 +5,7 @@ module.exports = fastifyPlugin(async (fastify, opts) => {
     try {
       await request.jwtVerify()
     } catch (err) {
-      reply.send(err)
+      res.send('Authentication failed')
     }
   })
 })
