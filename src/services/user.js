@@ -13,16 +13,20 @@ module.exports = async (fastify, options) => {
       reply.send('Authentication failed')
     }
   }),
-    fastify.get('/profile', {}, async (request, reply) => {
-      try {
-        const userModel = new User(),
-          userId = request.user.userId,
-          result = await userModel.getUserById(userId)
-        reply.send(result)
-      } catch (err) {
-        reply.send(err)
+    fastify.get(
+      '/profile',
+      { schema: userSchema.getProfileSchema },
+      async (request, reply) => {
+        try {
+          const userModel = new User(),
+            userId = request.user.userId,
+            result = await userModel.getUserById(userId)
+          reply.send(result)
+        } catch (err) {
+          reply.send(err)
+        }
       }
-    }),
+    ),
     fastify.post(
       '/sample',
       { schema: sampleSchema.addDataSampleSchema },

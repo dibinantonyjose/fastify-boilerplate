@@ -10,3 +10,8 @@ exports.loginSchema = {
   summary: 'User login',
   body: loginBodySchema
 }
+
+exports.getProfileSchema = {
+  tags: ['User'],
+  summary: 'User Profile Details'
+}
