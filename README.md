@@ -1,6 +1,6 @@
 # Fastify MongoDB Boilerplate
 
-###### This is a boilerplate of fastify framework with mongodb as the backend.
+###### This is a boilerplate of fastify framework with mongodb as the database.
 
 > Fastify is a web framework highly
 > focused on providing the best developer
