@@ -29,3 +29,40 @@ yarn
 ```console
 yarn run dev
 ```
+
+##### Swagger UI
+
+localhost:3000/docs
+
+##### Header
+
+For authorized routes, authorization token needs to be passed as Authorization in header
+
+##### Structure
+
+```txt
+├── env.sample
+├── Insomnia.json
+├── package.json
+├── README.md
+├── src
+│   ├── app.js
+│   ├── models
+│   │   ├── sampleModel.js
+│   │   └── userModel.js
+│   ├── plugins
+│   │   ├── apiReply.js
+│   │   └── mongo.js
+│   ├── schema
+│   │   ├── sampleSchema.js
+│   │   └── userSchema.js
+│   ├── services
+│   │   ├── auth.js
+│   │   ├── public.js
+│   │   └── user.js
+│   └── utils
+│       ├── replyGenerator.js
+│       └── swagger.js
+└── yarn.lock
+
+```
