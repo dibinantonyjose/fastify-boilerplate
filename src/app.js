@@ -7,8 +7,14 @@ const AutoLoad = require('fastify-autoload')
 const oas = require('fastify-oas')
 const jwt = require('fastify-jwt')
 const swagger = require('./utils/swagger')
+const cors = require('fastify-cors')
 
 // register fastify ecosystem plugins
+fastify.register(cors, {
+  origin: true,
+  allowedHeaders: ['Authorization', 'Content-Type'],
+  credentials: true
+})
 Fastify.register(oas, swagger.options)
 Fastify.register(jwt, {
   secret: process.env.jwtSecret
