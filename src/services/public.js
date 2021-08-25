@@ -12,12 +12,16 @@ module.exports = async (fastify, options) => {
         const sampleModel = new Sample(),
           result = await sampleModel.listAllData()
         if (result.length === 0) {
-          reply.send('no data')
+          reply.success({ message: 'No Data' })
         } else {
-          reply.send(result)
+          reply.success({ message: 'Success' }, result)
         }
       } catch (err) {
-        reply.send(err)
+        console.log(err)
+        reply.error({
+          message: 'Internal Server Error',
+          statusCode: 500
+        })
       }
     }
   ),
@@ -29,9 +33,17 @@ module.exports = async (fastify, options) => {
           const sampleModel = new Sample(),
             id = request.params.id,
             result = await sampleModel.getDataBySampleId(id)
-          reply.send(result)
+          if (!result) {
+            reply.error({ message: 'Id Not Found', statusCode: 409 })
+          } else {
+            reply.success({ message: 'Success' }, result)
+          }
         } catch (err) {
-          reply.send(err)
+          console.log(err)
+          reply.error({
+            message: 'Internal Server Error',
+            statusCode: 500
+          })
         }
       }
     )
