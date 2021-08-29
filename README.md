@@ -39,9 +39,11 @@ For authorized routes, authorization token needs to be passed as Authorization i
 ##### Structure
 
 ```txt
+.
 ├── env.sample
 ├── Insomnia.json
 ├── package.json
+├── prettier.config.js
 ├── README.md
 ├── src
 │   ├── app.js
