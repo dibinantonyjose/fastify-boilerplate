@@ -1,4 +1,4 @@
-# Fastify MongoDB Boilerplate
+# Fastify Boilerplate
 
 > Fastify is a web framework highly
 > focused on providing the best developer
