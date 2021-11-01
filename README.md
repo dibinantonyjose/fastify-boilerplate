@@ -13,13 +13,15 @@
 ##### Clone project
 
 ```console
-git clone https://github.com/dibinjose/fastify-mongo-boilerplate.git
+git clone https://github.com/dibinjose/fastify-boilerplate.git
 ```
 
 ##### Install packages
 
 ```console
 cd fastify-mongo-boilerplate
+
+nvm use
 
 yarn
 ```
