@@ -7,9 +7,7 @@ module.exports = fastifyPlugin(async () => {
     if (url) {
       await mongoose.connect(url, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true
+        useUnifiedTopology: true
       })
       console.log('Database is connected')
     } else {

@@ -16,7 +16,6 @@
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.14.1",
-    "fastify-oas": "^3.0.8",
     "fluent-json-schema": "^4.1.0",
     "mongoose": "^7.0.1"
   },

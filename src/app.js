@@ -4,9 +4,7 @@ require('dotenv').config()
 const fastify = require('fastify')({ logger: true })
 const path = require('path')
 const autoLoad = require('@fastify/autoload')
-const oas = require('fastify-oas')
 const jwt = require('@fastify/jwt')
-const swagger = require('./utils/swagger')
 const cors = require('@fastify/cors')
 
 // register fastify ecosystem plugins
@@ -15,7 +13,6 @@ fastify.register(cors, {
   allowedHeaders: ['Authorization', 'Content-Type'],
   credentials: true
 })
-fastify.register(oas, swagger.options)
 fastify.register(jwt, {
   secret: process.env.jwtSecret
 })
