@@ -1,39 +1,39 @@
 'use strict'
 // require external modules
 require('dotenv').config()
-const Fastify = require('fastify')({ logger: true })
+const fastify = require('fastify')({ logger: true })
 const path = require('path')
-const AutoLoad = require('fastify-autoload')
+const autoLoad = require('@fastify/autoload')
 const oas = require('fastify-oas')
-const jwt = require('fastify-jwt')
+const jwt = require('@fastify/jwt')
 const swagger = require('./utils/swagger')
-const cors = require('fastify-cors')
+const cors = require('@fastify/cors')
 
 // register fastify ecosystem plugins
-Fastify.register(cors, {
+fastify.register(cors, {
   origin: true,
   allowedHeaders: ['Authorization', 'Content-Type'],
   credentials: true
 })
-Fastify.register(oas, swagger.options)
-Fastify.register(jwt, {
+fastify.register(oas, swagger.options)
+fastify.register(jwt, {
   secret: process.env.jwtSecret
 })
 
 // register custom plugins
-Fastify.register(AutoLoad, {
+fastify.register(autoLoad, {
   dir: path.join(__dirname, 'plugins')
 })
 
-Fastify.register(AutoLoad, {
+fastify.register(autoLoad, {
   dir: path.join(__dirname, 'services'),
   options: Object.assign({ prefix: '/api' })
 })
 
 // start server
-Fastify.listen(process.env.port || 3000, process.env.host || '0.0.0.0', err => {
+fastify.listen({ port: process.env.port || 3000 }, err => {
   if (err) {
-    Fastify.log.error(err)
+    fastify.log.error(err)
     process.exit(1)
   }
 })
